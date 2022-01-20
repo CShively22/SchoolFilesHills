@@ -1,0 +1,22 @@
+AN _ IS A SPACE
+
+01  WORK-AREA
+    05 VARA         PIC 999         VALUE 123.      123         006         043
+    05 VARB         PIC 99V99       VALUE ZEROES.   00V00       23V00       56V70       00V00
+    05 VARC         PIC S999V9      VALUE -12.3.    -012V3      043V0       043V8       -256V7
+    05 VARD         PIC XX          VALUE "NO".     NO          HO
+    05 VARE         PIC X(5)        VALUE "HOOF".   HOOF_       HI_ _ _     HELLO
+
+PROCEDURE DIVISION.
+    MOVE VARA TO VARB.
+    MOVE 6 TO VARA.
+    MOVE 43.89 TO VARA.
+    MOVE VARA TO VARC.
+    MOVE 43.89 TO VARC.
+    MOVE -256.7 TO VARC.
+    MOVE VARC TO VARB.
+    MOVE 3000.00 TO VARB.
+
+    MOVE VARE TO VARD.
+    MOVE "HI" TO VARE.
+    MOVE "HELLO THERE" TO VARE.

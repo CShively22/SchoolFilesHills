@@ -1,0 +1,19 @@
+		
+Input number of guests attending:
+
+	0
+      100
+       25
+	5
+       11
+
+
+				    Title
+		    	       Company  Motto
+
+Number of Guests	Price Per Guest		Total Price	Large Event
+	0			$35		     $0		   False
+      100		       	$35	          $3500		   True
+       25			$35		   $875		   False
+        5                       $35		   $175		   False
+       11			$35		   $385		   False

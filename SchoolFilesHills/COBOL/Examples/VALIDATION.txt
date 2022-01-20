@@ -1,0 +1,33 @@
+
+
+
+Condition Names 
+    88 level items
+    Unlimited number of 88's
+    88's must follow an elementary items
+    88 level does not have a pic clause
+    88 level must have a VALUE clause
+
+
+    05 GENDER   PIC X.
+        88 VAL-GENDER       VALUE 'M' 'F'.
+
+
+SAME STATEMENTS:
+
+    IF GENDER NOT = 'M' AND GENDER NOT = 'F'
+        DISPLAY "ERROR".
+
+    IF NOT VAL-GENDER    * BOTH DO THE SAME *
+        DISPLAY "ERROR".
+
+    ---------------------------------------------
+
+    05 I-QTY   PIC 999.
+        88  VAL-QTY     VALUE 1 THRU 150.
+
+    IF I-QTY < 1 OR I-QTY > 150
+        DISPLAY "ERROR".
+
+    IF NOT VAL-QTY
+        DISPLAY "ERROR".

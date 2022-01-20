@@ -1,0 +1,119 @@
+1.
+    Date: 1/20/2022
+    Order Type:     C  
+    Basket Type:    C
+    Accessory:      A1
+    State:          IA
+    Customer Type:  2
+    Customer Info:  GREG
+
+    Basket Amount:  19.75
+    Discount:     -  0.00
+    Subtotal:       19.75
+    Tax:          +  1.19
+    Total Cost:     20.94
+
+2.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    W
+    Accessory:      A2
+    State:          IL
+    Customer Type:  1
+    Customer Info:  GREG
+
+    Basket Amount:  61.25
+    Discount:    -  30.63
+    Subtotal:       30.62
+    Tax:         +   1.91
+    Total Cost:     32.53
+
+3.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    W
+    Accessory:      A2
+    State:          IL
+    Customer Type:  3
+    Customer Info:  GREG
+
+    Basket Amount:  61.25
+    Discount:    -   6.13
+    Subtotal:       55.12
+    Tax:         +   3.45
+    Total Cost:     58.57
+
+4.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    K
+    Accessory:      A3
+    State:          MO
+    Customer Type:  2
+    Customer Info:  GREG
+
+    Basket Amount:  23.15
+    Discount:    -   0.00
+    Subtotal:       23.15
+    Tax:         +   0.98
+    Total Cost:     24.13
+
+5.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    M
+    Accessory:      A4
+    State:          IA
+    Customer Type:  1
+    Customer Info:  GREG
+
+    Basket Amount:  34.20
+    Discount:    -  17.10
+    Subtotal:       17.10
+    Tax:         +   1.03
+    Total Cost:     18.13
+
+6.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    M
+    Accessory:      A4
+    State:          IA  
+    Customer Type:  3
+    Customer Info:  GREG
+
+    Basket Amount:  34.20
+    Discount:    -   3.42
+    Subtotal:       30.78
+    Tax:         +   1.85
+    Total Cost:     32.63
+
+7.
+    Date: 1/20/2022
+    Order Type:     C
+    Basket Type:    U
+    Accessory:      A1
+    State:          IL
+    Customer Type:  2
+    Customer Info:  GREG
+
+    Basket Amount: 117.52
+    Discount:    -   0.00
+    Subtotal:      117.52
+    Tax:         +   7.35
+    Total Cost:    124.87
+
+8.
+    Date: 1/20/2022
+    Order Type:     S  
+    Basket Type:    U
+    Accessory:      A4 
+    State:          IA    
+    Customer Type:  1
+    Customer Info:  GREG
+
+    Basket Amount: 112.77
+    Discount:    -  56.39
+    Subtotal:       56.38
+    Tax:         +   3.38
+    Total Cost:     59.76

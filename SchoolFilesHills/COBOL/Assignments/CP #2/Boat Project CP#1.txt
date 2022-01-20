@@ -1,0 +1,168 @@
+Boat Project CP#2
+
+Variable Declarations
+Int- iPurchaseDate, iAccPckChar, cPgCtr = 0, cMjNumSold = 0, cGtNumSold = 0
+
+Float- iBoatCost, iPrepDeliverCost, cTotalCost, cMjTotalCost = 0, cGtTotalCost = 0
+
+String- MoreRecs = 'YES'. hBoatType, iLastName, iState, iBoatType, cAccPck, oPgCtr, oBoatName, oLastName, oState, oBoatCost, oPurchaseDate, 
+            oAccessoryPck, oPrepCost, oTotalCost, oDate, oMjBoatName oMjNumSold, oGtNumSold, oMjTotalCost,
+            oGtTotalCost
+
+0000-Main
+    Call 1000-Init
+    While MoreRecs != 'NO'
+        Call 2000-Mainline
+
+    Call 3000-Closing
+
+
+1000-Init
+    Open Input File
+    Open Output File
+
+    Get System Date
+    Move iDate to oDate
+
+    Call 9000-Read
+    Call 9200-Headings
+
+    Move iBoatType to hBoatType
+    Call 9300-ConvertBoatType
+    Call 9400-PrintMajorBoatLines
+    
+
+
+
+2000-Mainline
+    if hBoatType != iBoatType
+        Call 9100-MajorSubtotals
+
+    Call 2100-Calcs
+    Call 2200-Output
+    Call 9000-Read
+
+2100-Calcs
+    cTotalCost = iBoatCost + iPrepDeliverCost
+
+    * Do Major Calcs *
+    cMjTotalCost += cTotalCost
+    cMjNumSold += 1
+
+2200-Output
+    * Converts the int Accessory to String then moves it into cAccPck*
+        *Made so you can see all the move statements in one place*
+    Call 2210-ConvertAccPck
+
+    Move iLastName to oLastName
+    Move iState to oState
+    Move iBoatCost to oBoatCost
+    Move iPurchaseDate to oPurchaseDate
+    Move cAccPck to oAccessoryPck
+    Move iPrepDeliverCost to oPrepCost
+    Move cTotalCost to oTotalCost
+    
+
+    Print Detail Line
+        after advancing 1 Line
+            if EOP
+                Perform 9200-Headings.
+
+
+2210-ConvertAccPck
+    Evaluate iAccPckChar
+        When 1
+            Move "Electronics" to cAccPck
+        When 2
+            Move "Ski Package" to cAccPck
+        When Other
+            Move "Fishing Package" to cAccPck
+    End-Evaluate.
+
+3000-Closing
+    Call 9100-MajorSubtotals
+    Call 3100-GrandTotals
+
+    Close Input File
+    Close Output File
+
+3100-GrandTotals
+    Move cGtNumSold to oGtNumSold
+    Move cGtTotalCost to oGtTotalCost.
+
+    Print GrandTotal line
+        after advancing 3 lines
+
+9000-Read
+    Read Input File
+        If EOF
+            MoreRecs = 'NO'.
+
+
+9100-MajorSubtotals
+    Move cMjTotalCost to oMjTotalCost
+    Move cMjNumSold to oMjNumSold
+
+    Print MajorSubtotals Line
+        after advancing 2 lines
+            if EOP
+                Perform 9200-Headings. 
+
+    cGtNumSold += cMjNumSold
+    cGtTotalCost += cMjTotalCost
+
+    cMjNumSold = 0
+    cMjTotalCost = 0
+
+    if MoreRecs != 'NO'
+        hBoatType = iBoatType
+        Call 9300-ConvertBoatType
+        Call 9400-PrintMajorBoatLines
+
+
+
+9200-Headings
+    cPgCtr += 1
+
+    Move cPgCtr to oPgCtr
+
+
+    Print Title Line
+        After advancing 1 line.
+
+    Print ColHdg1
+        After advancing 2 lines.
+
+    Print ColHdg2
+        After advancing 1 line.
+
+    Print ColHdg3
+        After advancing 1 line.
+
+
+9300-ConvertBoatType
+    Evaluate iBoatType
+        When "B"
+            Move "Bass Boat" to oBoatName
+        When "P"
+            Move "Pontoon" to oBoatName
+        When "S"
+            Move "Ski Boat" to oBoatName
+        When "J"
+            Move "John Boat" to oBoatName
+        When "C"
+            Move "Canoe" to oBoatName
+        When Other
+            Move "Cabin Cruiser" to oBoatName
+    End-Evaluate.
+
+9400-PrintMajorBoatLines
+    Print BoatTypeLine
+        after advancing 2 lines
+            if EOP
+                Call 9200-Headings
+    
+    Print BlankLine
+        after advancing 1 line.
+            if EOP
+                Call 9200-Headings

@@ -1,0 +1,91 @@
+Enter child's first name: Sally
+Enter child's last name: Jones
+Enter name of first toy: Dog House
+Enter cost of first toy: 123.85
+Enter name of second toy: Wienie Whistle
+Enter cost of second toy: 4.99
+
+Child's name: Jones, Sally
+First toy: Dog House	    $   123.85
+Second toy: Wienie Whistle  $     4.99
+Subtotal:		    $	128.84
+Tax(7%):		    $	  9.02
+			     ----------
+Total:			    $   137.86
+	
+	Have A Happy Holiday!
+
+
+Enter child's first name: Greg
+Enter child's last name: Stamos
+Enter name of first toy: Boxing Gloves
+Enter cost of first toy: 60
+Enter name of second toy: Air Force Ones
+Enter cost of second toy: 340.99
+
+Child's name: Stamos, Greg
+First toy: Boxing Gloves    $    60.00
+Second toy: Air Force Ones  $   340.99
+Subtotal:		    $	400.99
+Tax(%7):		    $	 28.07
+			     ----------
+Total:			    $   429.06
+	
+	Have A Happy Holiday!
+
+
+
+Enter child's first name: Terry
+Enter child's last name: Shultz
+Enter name of first toy: Bike
+Enter cost of first toy: 1000.99
+Enter name of second toy: Bike Lessons
+Enter cost of second toy: 214.99
+
+Child's name: Shultz, Terry
+First toy:  Bike	    $  1000.99
+Second toy: Bike Lessons    $   214.99
+Subtotal:		    $  1215.98
+Tax(%7):		    $	 85.12
+			      ---------
+Total:			    $  1301.10
+	
+	Have A Happy Holiday!
+
+
+
+Enter child's first name: Harry
+Enter child's last name: Legs
+Enter name of first toy: Razer 
+Enter cost of first toy: 19.99
+Enter name of second toy: Shaving Cream
+Enter cost of second toy: 12.99
+
+Child's name: Jones, Sally
+First toy: Dog House	    $    19.99
+Second toy: Wienie Whistle  $    12.99 
+Subtotal:		    $	 32.98
+Tax(%7):		    $	  2.32
+			     ----------
+Total:			    $    35.30
+	
+	Have A Happy Holiday!
+
+
+
+Enter child's first name: David
+Enter child's last name: Nash
+Enter name of first toy: Hoverboard 
+Enter cost of first toy: 299.99
+Enter name of second toy: Helmet
+Enter cost of second toy: 35.00
+
+Child's name: Jones, Sally
+First toy: Dog House	    $   299.99
+Second toy: Wienie Whistle  $    35.00 
+Subtotal:		    $	334.99
+Tax(%7):		    $	 23.45 
+			     ----------
+Total:			    $   358.44
+	
+	Have A Happy Holiday!

@@ -1,0 +1,110 @@
+What is the current beach name?: Sandy Beach
+
+What was the cost of (1) snow cone?: 1.50
+
+How many snow cones did you purchase?: 3
+
+What was the cost of (1) corn dog?: 12.50
+
+How many corn dogs did you purchase?: 12
+
+
+        Beach: Sandy Beach
+    
+3   Snow Cones:             $ 4.50
+12  Corn Dogs:             $150.00
+    Subtotal:              $154.50
+    Tax:                     $8.50
+----------------------------------
+    Total:                 $163.00
+
+
+
+What is the current beach name?: White Sandy
+
+What was the cost of (1) snow cone?: 5
+
+How many snow cones did you purchase?: 11
+
+What was the cost of (1) corn dog?: 1.75
+
+How many corn dogs did you purchase?: 11
+
+
+        Beach: White Sandy
+    
+11  Snow Cones:             $55.00
+11  Corn Dogs:              $19.25
+    Subtotal:               $74.25
+    Tax:                     $4.08
+----------------------------------
+    Total:                  $78.33
+
+
+
+What is the current beach name?: Red Beach
+
+What was the cost of (1) snow cone?: 999
+
+How many snow cones did you purchase?: 999
+
+What was the cost of (1) corn dog?: 999
+
+How many corn dogs did you purchase?: 999
+
+
+        Beach: Red Beach
+    
+999 Snow Cones:        $998,001.00
+999 Corn Dogs:         $998,001.00
+    Subtotal:        $1,996,002.00
+    Tax:                109,780.11
+----------------------------------
+    Total:           $2,105,782.11
+
+
+
+What is the current beach name?: Blue Beach
+
+What was the cost of (1) snow cone?: 0.25
+
+How many snow cones did you purchase?: 1
+
+What was the cost of (1) corn dog?: .50
+
+How many corn dogs did you purchase?: 1
+
+
+        Beach: Blue Beach
+    
+1   Snow Cones:               $.25
+1   Corn Dogs:                $.50
+    Subtotal:                 $.75
+    Tax:                      $.04
+----------------------------------
+    Total:                   $0.79
+
+
+
+What is the current beach name?: Gregory Premium
+
+What was the cost of (1) snow cone?: 20.69
+
+How many snow cones did you purchase?: 10
+
+What was the cost of (1) corn dog?: 69.20
+
+How many corn dogs did you purchase?: 10
+
+
+        Beach: Gregory Premium
+    
+10  Snow Cones:            $206.90
+10  Corn Dogs:             $692.00
+    Subtotal:              $898.90
+    Tax:                    $49.44
+----------------------------------
+    Total:                 $948.34
+
+
+

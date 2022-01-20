@@ -1,0 +1,392 @@
+Carson Shively 
+CP#4
+
+Variable Declarations
+
+Int - cPgCtr = 0, iBedrooms, iNights, iDate, iMonth, cGtNumRentals = 0, cGtFreeCleaning = 0
+
+Float - iDockSlip, cFreeNights, cPetFee, cHotTubFee, cNightFee, cCondoFee, cCleaningFee, cDockSlipFee, cSubtotal, cDealAmount, cAmountDue,
+            cGtSubtotal = 0, cGtDealAmount = 0, cGtAmountDue = 0, cGtFreeNights = 0, cGtPetFees = 0, cGtHotTubFees = 0
+
+String - MoreRecs = "YES", iGuest, iCondo, iPets, iHotTub, oPgCtr, oDate, oMonth, oCondo, oGuestName, oNights, oNightFees, oCondoFee, oCleaningFee, oDockSlipFee, oSubtotal, oDealAmount, oAmountDue,
+            oGtSubtotal, oGtDealAmount, oGtAmountDue, oNumRentals, oGtFreeNights, oGtFreeCleaning, oGtPetFees, oGtHotTubFees
+
+0000-Main
+    Perform 1000-Init.
+    While MoreRecs = "YES"
+        Perform 2000-Mainline.
+    Perform 3000-Closing.
+
+
+
+
+1000-Init
+    Open Input
+    Open Output
+
+    Get System Date
+    Set iDate
+
+    Perform Read.
+    Perform Headings.
+
+
+
+2000-Mainline
+    Perform 2100-DetermineCondo.
+    Perform 2020-Output.
+    Perform 9000-Read.
+
+
+2020-Output
+    * Output to VACATION.PRT *
+    Move iGuest to oGuestName.
+    Move iNights to oNights.
+    Move cNightFee to oNightFees.
+    Move cCondoFee to oCondoFee.
+    Move cCleaningFee to oCleaningFee.
+    Move cDockSlipFee to oDockSlipFee.
+    Move cSubtotal to oSubtotal.
+    Move cDealAmount to oDealAmount.
+    Move cAmountDue to oAmountDue.
+
+    If cAmountDue > 750.00
+        Move "FLAG" to oFlag.
+
+    Write PRTLINE
+        from detail
+            after advancing 1 line
+                at EOP
+                    Perform 9200-Headings.
+        
+2100-DetermineCondo
+    Evaluate iCondo
+        When "HB"
+            Perform 2100-HB
+        When "OB
+            Perform 2200-OB
+        When "PP"
+            Perform 2300-PP
+        When "RB"
+            Perform 2400-RB
+        When "SB
+            Perform 2500-SB
+        When "L"
+            Perform 2600-L 
+        When "HT"
+            Perform 2700-HT
+        When Other
+            Perform 2800-CP
+    End-Evaluate.
+
+* Condo Methods *
+ *Horseshoe Bend*
+2110-HB 
+    * Nightly Charge = 99.50
+    * Cleaning Fee = 100
+    * Deals = Pets - Additional 10%, Hot Tub - Additional 5%.
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Horseshoe Bend" to oCondo.
+    
+    cNightFee = iBedrooms * 99.50
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 100.00
+
+    Perform 9100-CalculateSubtotal.
+
+    if iPets = "Y"
+        cPetFee = cSubtotal * .1
+    if iHotTub = "Y"
+        cHotTubFee = cSubtotal * .5
+
+    
+    cDealAmount = cHotTubFees + cPetFees
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform AddToGrandTotals.
+
+
+
+ *Osage Beach*
+2120-OB
+    * Nightly Charge = 188.00
+    * Cleaning Fee = 150
+    * Deals = 7th night free, Pets - Additional 10%.
+
+    cHotTubFee = 0
+    cPetFee = 0
+    cFreeNights = 0
+
+    Move "Osage Beach" to oCondo
+
+    cNightFee = iBedrooms * 188.00
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 150
+
+    Perform 9100-CalculateSubtotal.
+
+    if iPets = "Y"
+        cPetFee = cSubtotal * .1
+    
+    if iNights >= 7
+        cFreeNights = 1
+        cDealAmount = cPetFee - cNightFee
+    else
+        cDealAmount = cPetFee    
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform 9400-AddToGrandTotals.
+
+
+ *Pistol Point*
+2130-PP
+    * Nightly Charge = 50.00
+    * Cleaning Fee = 75
+    * Deals = None
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Pistol Point" to oCondo.
+
+    cNightFee = iBedrooms * 50.00
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 75
+
+    Perform 9100-CalculateSubtotal.
+
+    cDealAmount = 0
+
+    cAmountDue = cSubtotal + cDealAmount.
+
+    Perform 9400-AddToGrandTotals.
+
+
+ *Regatta Bay*
+2140-RB
+    * Nightly Charge = 62.10 
+    * Cleaning Fee = 75
+    * Deals = Over 5 nights no cleaning fee
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Regatta Bay" to oCondo
+    
+    cNightFee = iBedrooms * 62.10
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 75
+
+    if iNights > 5
+        cCleaningFee = 0
+        cDealAmount = -75
+    
+    Perform 9100-CalculateSubtotal.
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform 9400-AddToGrandTotals.
+
+ *Shawnee Bend*
+2150-SB
+    * Nightly Charge = 100.00
+    * Cleaning Fee = 150
+    * Deals = Pets - Additional 10%
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Shawnee Bend" to oCondo.
+
+    cNightFee = iBedrooms * 100
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 150
+
+    Perform 9100-CalculateSubtotal.
+
+    if iPets = "Y"
+        cPetFee = cSubtotal * .1
+    
+    cDealAmount = cPetFee
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform 9400-AddToGrandTotals.
+
+ *Ledges*
+2160-L
+    * Nightly Charge = 76.35
+    * Cleaning Fee = 0
+    * Deals = Hot Tub - Additional 7.5%
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Ledges" to oCondo.
+
+    cNightFee = iBedrooms * 76.35
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 0
+
+    Perform 9100-CalculateSubtotal.
+
+    if iHotTub = "Y"
+        cHotTubFee = cSubtotal * .075
+    
+    cDealAmount = cHotTubFee
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform 9400-AddToGrandTotals.
+
+ *Harbour Towne*
+2170-HT
+    * Nightly Charge = 50.00
+    * Cleaning Fee = 100
+    * Deals = 3rd Night 1/2 price
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    Move "Harbour Towne" to oCondo.
+
+    cNightFee = iBedrooms * 50.00
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 100
+
+    Perform 9100-CalculateSubtotal.
+
+    if iNights >= 3
+        cFreeNights = .5
+        cDealAmount = -1 * cNightFee / 2  
+    else
+        cDealAmount = 0
+    
+    cAmountDue = cSubtotal + cDealAmount
+
+    9400-AddToGrandTotals.
+
+ *Compasse Pointe*
+2180-CP
+    * Nightly Charge = 125.00
+    * Cleaning Fee = 0
+    * Deals = 5th night free
+    cPetFee = 0
+    cHotTubFee = 0
+    cFreeNights = 0
+
+    cNightFee = iBedrooms * 125.00
+    cCondoFee = cNightFee * iNights
+    cCleaningFee = 0
+
+    Perform 9100-CalculateSubtotal.
+
+    if iNights >= 5
+        cFreeNights = 1
+        cDealAmount = -1 * cNightFee
+    else
+        cDealAmount = 0
+
+    cAmountDue = cSubtotal + cDealAmount
+
+    Perform 9400-AddToGrandTotals.
+
+3000-Closing
+    Perform 9300-GrandTotals.
+    Close Input.
+    Close Output.
+
+9000-Read
+    Read Input File
+        if EOF
+            MoreRecs = "NO".
+
+
+9100-CalculateSubtotal
+    cDockSlipFee = iDockSlip * iNights.
+    cSubtotal = cCondoFee + cCleaningFee + cDockSlipFee.
+
+
+9200-Headings
+    Perform 9210-ConvertMonth.
+
+    cPgCtr += 1.
+    Move cPgCtr to oPgCtr.
+
+
+    Print TitleLine.
+        After Advancing 1 line.
+    Print ColHdg1
+        After Advancing 1 line.
+    Print ColHdg2
+        After advancing 2 lines.
+    Print ColHdg3
+        after advancing 1 line.
+    Print BlankLine
+        After Advancing 1 line.
+
+9210-ConvertMonth
+    Evaluate iMonth
+        When 1
+            Move "January" to oMonth.
+        When 2
+            Move "February" to oMonth.
+        When 3
+            Move "March" to oMonth.
+        When 4
+            Move "April" to oMonth.
+        When 5 
+            Move "May" to oMonth.
+        When 6
+            Move "June" to oMonth.
+        When 7
+            Move "July" to oMonth.
+        When 8
+            Move "August" to oMonth.
+        When 9
+            Move "September" to oMonth.
+        When 10
+            Move "October" to oMonth.
+        When 11
+            Move "November" to oMonth.
+        When Other
+            Move "December" to oMonth.
+    End-Evaluate.
+
+9300-GrandTotals
+    Move cGtSubtotal to oGtSubtotal.
+    Move cGtDealAmount to oGtDealAmount.
+    Move cGtAmountDue to oGtAmountDue.
+    Move cGtNumRentals to oNumRentals.
+    Move cGtPetFees to oGtPetFees.
+    Move cGtHotTubFees to oGtHotTubFees.
+    Move cGtFreeCleaning to oGtFreeCleaning.
+    Move cGtFreeNights to oGtFreeNights.
+
+    Print GrandTotalsLine1
+        after advancing 3 lines.
+
+    Print GrandTotalsLine2
+        after advancing 2 lines.
+
+    Print GrandTotalsLine3
+        afer advancing 1 line.
+
+    
+9400-AddToGrandTotals
+    cGtNumRentals += 1
+    cGtPetFees += cPetFee
+    cGtHotTubFees += cHotTubFee
+    cGtSubtotal += cSubtotal
+    cGtDealAmount += cDealAmount
+    cGtAmountDue += cAmountDue
+
+    if cCleaningFee = 0
+        cGtFreeCleaning += 1
+     
+    cGtFreeNights += cFreeNights

@@ -1,0 +1,94 @@
+1.
+	Order Tpye:		C
+	Basket Type:		C
+	Accessory:		A1
+	State:			IA
+	Customer Type:		2
+
+2.
+	Order Tpye:		C
+	Basket Type: 		W
+	Accessory:		A2
+	State:			IL
+	Customer Type:		1
+
+3.
+	Order Tpye:		C
+	Basket Type: 		W
+	Accessory:		A2
+	State:			IL
+	Customer Type:		3
+
+4.	Order Tpye:		C
+	Basket Type:		K
+	Accessory:		A3
+	State:			MO
+	Customer Type:		2
+
+5.	Order Tpye:		C
+	Basket Type: 		M
+	Accessory:		A4
+	State:			IA
+	Customer Type:		1
+
+6.	Order Tpye:		C
+	Basket Type: 		M
+	Accessory:		A4
+	State:			IA
+	Customer Type:		3
+
+7.	Order Tpye:		C
+	Basket Type: 		U
+	Accessory:		A1
+	State:			IL
+	Customer Type:		2
+
+8.	Order Tpye:		C
+	Basket Type: 		C
+	Accessory:		A2
+	State:			MO
+	Customer Type:		1
+
+9.	Order Tpye:		C
+	Basket Type: 		C
+	Accessory:		A2
+	State:			MO
+	Customer Type:		3
+
+10.	Order Tpye:		C
+	Basket Type: 		W
+	Accessory:		A3
+	State:			IA
+	Customer Type:		2
+
+11.	Order Tpye:		C
+	Basket Type: 		XX
+	Accessory:		A1
+	State:			IA
+	Customer Type:		1
+
+12.	Order Tpye:		C
+	Basket Type: 		C
+	Accessory:		XX
+	State:			IA
+	Customer Type:		1
+
+13.	Order Tpye:		C
+	Basket Type: 		C
+	Accessory:		A1
+	State:			XX
+	Customer Type:		1
+
+14.	Order Tpye:		C
+	Basket Type: 		C
+	Accessory:		A1
+	State:			IA
+	Customer Type:		XX
+
+15.	Order Tpye:		C
+	Order Type: 		S
+	Basket Type: 		U
+	Accessory:		A4
+	State:			IA
+	Customer Type:		1
+

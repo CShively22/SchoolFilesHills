@@ -1,0 +1,228 @@
+Boat Project CP#3
+
+Variable Declarations
+Int- iPurchaseDate, iAccPckChar, cPgCtr = 0, cMnNumSold = 0, cMjNumSold = 0, cGtNumSold = 0
+
+Float- iBoatCost, iPrepDeliverCost, cTotalCost,SALES_TAX = 0.06, MarkupPercentage, cMnTotalCost = 0, cMjTotalCost = 0, cGtTotalCost = 0
+
+String- MoreRecs = 'YES'. hState, hBoatType, iLastName, iState, iBoatType, cAccPck, oPgCtr, oBoatName, oLastName, oState, oBoatCost, oPurchaseDate, 
+            oAccessoryPck, oPrepCost, oTotalCost, oDate, oMjBoatName oMjNumSold, oGtNumSold, oMjTotalCost, oMnNumSold, oMnTotalCost
+            oGtTotalCost
+
+0000-Main
+    Call 1000-Init
+    While MoreRecs != 'NO'
+        Call 2000-Mainline
+
+    Call 3000-Closing
+
+
+1000-Init
+    Open Input File
+    Open Output File
+
+    Get System Date
+    Move iDate to oDate
+
+    Call 9000-Read
+    
+    move iState to hState
+    Move iBoatType to hBoatType
+    
+    9300-ConvertBoatType
+
+    Call 9200-Headings
+
+    
+
+
+
+2000-Mainline
+    if hBoatType != iBoatType
+        Call 9100-MajorSubtotals
+    if hState != iState
+        Call MinorSubtotals
+    
+    Call 2100-Calcs
+    Call 2200-Output
+    Call 9000-Read
+
+2100-Calcs
+
+    * BoatCost and Delivery Prep *
+    cTotalCost = iBoatCost + iPrepDeliverCost
+
+    * This adds to the total cost inside of the Method *
+    2110-DetermineAccPckCost
+
+    * Markup Percentage rounded to nearest hundreth *
+    cTotalCost += Round(MarkupPercentage * iBoatCost)
+
+    * Sales Tax rounded to nearest hundreth * 
+    cTotalCost += Round(cTotalCost * SALES_TAX)
+
+    * Do Minor Calcs *
+    cMnTotalCost += cTotalCost
+    cMnNumSold += 1
+
+
+2110-DetermineAccPckCost
+    Evaluate iAccPckChar
+        When 1
+            cTotalCost += 5415.30
+        When 2
+            cTotalCost += 3980.00
+        Other
+            cTotalCost += 345.45
+    End-Evaluate
+
+
+
+2200-Output
+    * Converts the int Accessory to String then moves it into cAccPck*
+        *Made so you can see all the move statements in one place*
+    Call 2210-ConvertAccPck
+
+    Move iLastName to oLastName
+    Move iState to oState
+    Move iBoatCost to oBoatCost
+    Move iPurchaseDate to oPurchaseDate
+    Move cAccPck to oAccessoryPck
+    Move iPrepDeliverCost to oPrepCost
+    Move cTotalCost to oTotalCost
+    
+
+    Print Detail Line
+        after advancing 1 Line
+            if EOP
+                Perform 9200-Headings.
+
+
+2210-ConvertAccPck
+    Evaluate iAccPckChar
+        When 1
+            Move "Electronics" to cAccPck
+        When 2
+            Move "Ski Package" to cAccPck
+        When Other
+            Move "Fishing Package" to cAccPck
+    End-Evaluate.
+
+3000-Closing
+    Call 9500-MinorSubtotals
+    Call 9100-MajorSubtotals
+    Call 3100-GrandTotals
+
+    Close Input File
+    Close Output File
+
+3100-GrandTotals
+    Move cGtNumSold to oGtNumSold
+    Move cGtTotalCost to oGtTotalCost.
+
+    Print GrandTotal line
+        after advancing 3 lines
+
+9000-Read
+    Read Input File
+        If EOF
+            MoreRecs = 'NO'.
+
+
+9100-MajorSubtotals
+
+    Move cMjTotalCost to oMjTotalCost
+    Move cMjNumSold to oMjNumSold
+
+    Print MajorSubtotals Line
+        after advancing 2 lines
+            if EOP
+                Perform 9200-Headings. 
+
+    cGtNumSold += cMjNumSold
+    cGtTotalCost += cMjTotalCost
+
+    cMjNumSold = 0
+    cMjTotalCost = 0
+
+    if MoreRecs != 'NO'
+        hBoatType = iBoatType
+        Call 9300-ConvertBoatType
+        Call 9400-PrintMajorBoatLines
+
+
+
+9200-Headings
+    cPgCtr += 1
+
+    Move cPgCtr to oPgCtr
+
+
+    Print Title Line
+        After advancing 1 line.
+    
+    Print BoatTypeLine
+        After advancing 2 lines.
+
+    Print ColHdg1
+        After advancing 2 lines.
+
+    Print ColHdg2
+        After advancing 1 line.
+
+    Print ColHdg3
+        After advancing 1 line.
+
+
+9300-ConvertBoatType
+    Evaluate iBoatType
+        When "B"
+            Move "Bass Boat" to oBoatName
+            Move 0.33 to MarkupPercentage
+        When "P"
+            Move "Pontoon" to oBoatName
+            Move 0.25 to MarkupPercentage
+        When "S"
+            Move "Ski Boat" to oBoatName
+            Move 0.425 to MarkupPercentage
+        When "J"
+            Move "John Boat" to oBoatName
+            Move 0.33 to MarkupPercentage
+        When "C"
+            Move "Canoe" to oBoatName
+            Move 0.2 to MarkupPercentage
+        When Other
+            Move "Cabin Cruiser" to oBoatName
+            Move 0.3 to MarkupPercentage
+    End-Evaluate.
+    
+9400-PrintMajorBoatLines
+    Print BoatTypeLine
+        after advancing 2 lines
+            if EOP
+                Call 9200-Headings
+    
+    Print BlankLine
+        after advancing 1 line.
+            if EOP
+                Call 9200-Headings
+
+
+9500-MinorSubtotals
+    Move cMnNumSold to oMnNumSold
+    Move cMnTotalCost to oMnTotalCost
+
+    Print MinorSubtotalsLine
+        after advancing 2 lines
+            if EOP
+                perform 9200-Headings.
+
+    cMjNumSold += cMnNumSold
+    cMjTotalCost += cMnTotalCost
+
+    cMnNumSold = 0
+    cMnTotalCost = 0
+
+    if MoreRecs != "NO"
+        Move iState to hState
+        
